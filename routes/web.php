@@ -25,7 +25,7 @@ use App\Http\Controllers\AjaxController;
 
     Route::get('/indirimdekiler',[PageController::class,'indirimdekiurunler'])->name('indirimdekiurunler');
 
-    Route::get('/urun/detay',[PageController::class,'urundetay'])->name('urundetay');
+    Route::get('/urun/{slug}',[PageController::class,'urundetay'])->name('urundetay');
 
     Route::get('/sepet',[PageController::class,'cart'])->name('sepet');
 

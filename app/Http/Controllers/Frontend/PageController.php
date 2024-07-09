@@ -11,13 +11,14 @@ class PageController extends Controller
 {
     public function urunler()
     {
-        $products = Product::where('status','1')->get();
+        $products = Product::where('status','1')->paginate(20);
         return view('frontend.pages.products',compact('products'));
     }
 
-    public function urundetay()
+    public function urundetay($slug)
     {
-        return view('frontend.pages.product');
+        $product = Product::whereSlug($slug)->first();
+        return view('frontend.pages.product',compact('product'));
     }
 
     public function indirimdekiurunler()
