@@ -16,6 +16,8 @@ class PageController extends Controller
         $color = $request->color ?? null;
         $startprice = $request->start_price ?? null;
         $endprice = $request->end_price ?? null;
+        $order = $request->order ?? 'id';
+        $short = $request->short ?? 'desc';
 
         $products = Product::where('status','1')->select(['id','name','slug','size','color','price','category_id','image'])
         ->where(function($q) use($size,$color,$startprice,$endprice) {
@@ -43,7 +45,7 @@ class PageController extends Controller
         $sizelists = Product::where('status','1')->groupBy('size')->pluck('size')->toArray();
         $colors = Product::where('status','1')->groupBy('color')->pluck('color')->toArray();
 
-        $products = $products->paginate(1);
+        $products = $products->orderBy($order,$short)->paginate(20);
 
         $categories = Category::where('status','1')->where('cat_ust',null)->withCount('items')->get();
 
