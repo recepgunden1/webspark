@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\About;
 use App\Models\Product;
+use App\Models\Category;
 
 class PageController extends Controller
 {
@@ -16,7 +17,7 @@ class PageController extends Controller
         $startprice = $request->start_price ?? null;
         $endprice = $request->end_price ?? null;
 
-        $products = Product::where('status','1')
+        $products = Product::where('status','1')->select(['id','name','slug','size','color','price','category_id','image'])
         ->where(function($q) use($size,$color,$startprice,$endprice) {
             if(!empty($size))
             {
@@ -34,9 +35,19 @@ class PageController extends Controller
             }
             return $q;
         })
+        ->with('category:id,name,slug');
 
-        ->paginate(20);
-        return view('frontend.pages.products',compact('products'));
+        $minprice = $products->min('price');
+        $maxprice = $products->max('price');
+
+        $sizelists = Product::where('status','1')->groupBy('size')->pluck('size')->toArray();
+        $colors = Product::where('status','1')->groupBy('color')->pluck('color')->toArray();
+
+        $products = $products->paginate(1);
+
+        $categories = Category::where('status','1')->where('cat_ust',null)->withCount('items')->get();
+
+        return view('frontend.pages.products',compact('products','categories','minprice','maxprice','sizelists','colors'));
     }
 
     public function urundetay($slug)

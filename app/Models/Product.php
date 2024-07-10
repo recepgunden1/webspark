@@ -8,7 +8,8 @@ use Cviebrock\EloquentSluggable\Sluggable;
 
 class Product extends Model
 {
-    use Sluggable;
+    use HasFactory, Sluggable;
+
     protected $fillable = [
         'name',
         'slug',
@@ -22,6 +23,11 @@ class Product extends Model
         'status',
         'content',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
 
     public function sluggable(): array
     {
