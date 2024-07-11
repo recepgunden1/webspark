@@ -10,8 +10,10 @@ use App\Models\Category;
 
 class PageController extends Controller
 {
-    public function urunler(Request $request)
+    public function urunler(Request $request,$slug=null)
     {
+        $category = request()->segment(1) && null;
+
         $size = $request->size ?? null;
         $color = $request->color ?? null;
         $startprice = $request->start_price ?? null;
@@ -37,7 +39,13 @@ class PageController extends Controller
             }
             return $q;
         })
-        ->with('category:id,name,slug');
+        ->with('category:id,name,slug')
+        ->whereHas('category',function($q) use($category,$slug) {
+            if(!empty($slug)) {
+                $q->where('slug',$slug);
+            }
+            return $q;
+        });
 
         $minprice = $products->min('price');
         $maxprice = $products->max('price');
@@ -47,15 +55,18 @@ class PageController extends Controller
 
         $products = $products->orderBy($order,$short)->paginate(20);
 
-        $categories = Category::where('status','1')->where('cat_ust',null)->withCount('items')->get();
-
-        return view('frontend.pages.products',compact('products','categories','minprice','maxprice','sizelists','colors'));
+        return view('frontend.pages.products',compact('products','minprice','maxprice','sizelists','colors'));
     }
 
     public function urundetay($slug)
     {
-        $product = Product::whereSlug($slug)->first();
-        return view('frontend.pages.product',compact('product'));
+        $product = Product::whereSlug($slug)->where('status','1')->firstOrFail();
+        $products = Product::where('id','!=',$product->id)
+        ->where('category_id',$product->category_id)
+        ->where('status','1')
+        ->limit(6)
+        ->get();
+        return view('frontend.pages.product',compact('product','products'));
     }
 
     public function indirimdekiurunler()

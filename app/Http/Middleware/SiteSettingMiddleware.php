@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Models\SiteSetting;
+use App\Models\Category;
 
 class SiteSettingMiddleware
 {
@@ -20,7 +21,10 @@ class SiteSettingMiddleware
     public function handle(Request $request, Closure $next)
     {
         $settings = SiteSetting::pluck('data', 'name')->toArray();
-        view()->share(['settings' => $settings]);
+
+        $categories = Category::where('status','1')->withCount('items')->get();
+
+        view()->share(['settings' => $settings, 'categories'=>$categories]);
 
         $response = $next($request);
 
