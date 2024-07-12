@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\PageHomeController;
 use App\Http\Controllers\Frontend\PageController;
@@ -27,6 +28,8 @@ use App\Http\Controllers\AjaxController;
 
     Route::get('/urun/{slug}',[PageController::class,'urundetay'])->name('urundetay');
 
-    Route::get('/sepet',[PageController::class,'cart'])->name('sepet');
+    Route::get('/sepet',[CartController::class,'index'])->name('sepet');
+
+    Route::post('/sepet/ekle',[CartController::class,'add'])->name('sepet.add');
 
 });
