@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class CartController extends Controller
 {
@@ -19,7 +20,29 @@ class CartController extends Controller
     }
 
     public function add(Request $request) {
-        return $request->all();
+        $productId = $request->product_id;
+        $qty = $request->qty;
+        $size = $request->size;
+        $urun = Product::find($productId);
+        if(!$urun){
+            return back()->withErrors('Urun bulunamadi');
+        }
+        $cartItem = session('cart',[]);
+
+        if(array_key_exists($productId,$cartItem)){
+            $cartItem[$productId]['qty'] += $qty;
+        }else{
+            $cartItem[$productId]=[
+                'image'=>$urun->image,
+                'name'=>$urun->name,
+                'price'=>$urun->price,
+                'qty'=>$qty,
+                'size'=>$size,
+            ];
+        }
+        session(['cart'=>$cartItem]);
+
+        return back()->withSuccess('Urun eklendi');
     }
 
     public function remove() {
