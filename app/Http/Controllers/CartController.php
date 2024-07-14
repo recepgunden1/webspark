@@ -21,7 +21,7 @@ class CartController extends Controller
 
     public function add(Request $request) {
         $productId = $request->product_id;
-        $qty = $request->qty;
+        $qty = $request->qty ?? 1;
         $size = $request->size;
         $urun = Product::find($productId);
         if(!$urun){
@@ -45,7 +45,13 @@ class CartController extends Controller
         return back()->withSuccess('Urun eklendi');
     }
 
-    public function remove() {
-
+    public function remove(Request $request) {
+        $productId = $request->product_id;
+        $cartItem = session('cart',[]);
+        if(array_key_exists($productId,$cartItem)){
+            unset($cartItem[$productId]);
+        }
+        session(['cart'=>$cartItem]);
+        return back()->withSuccess('Urun basariyla kaldirildi');
     }
 }

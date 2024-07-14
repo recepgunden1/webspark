@@ -12,9 +12,15 @@
 
   <div class="site-section">
     <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-12">
+                @if (session()->get('success'))
+                    <div class="alert alert-success">{{session()->get('success')}}</div>
+                @endif
+            </div>
+        </div>
       <div class="row mb-5">
-        <form class="col-md-12" method="post">
-          <div class="site-blocks-table">
+          <div class="col-lg-12 site-blocks-table">
             <table class="table table-bordered">
               <thead>
                 <tr>
@@ -28,7 +34,7 @@
               </thead>
               <tbody>
                 @if ($cartItem)
-                @foreach ($cartItem as $cart)
+                @foreach ($cartItem as $key => $cart)
                 <tr>
                     <td class="product-thumbnail">
                       <img src="{{asset($cart['image'])}}" alt="Image" class="img-fluid">
@@ -50,26 +56,23 @@
 
                     </td>
                     <td>{{$cart['price'] * $cart['qty']}} tl</td>
-                    <td><a href="#" class="btn btn-primary btn-sm">X</a></td>
+                    <td>
+                        <form action="{{route('sepet.remove')}}" method="post">
+                            @csrf
+                            <input type='text' hidden name='product_id' value="{{$key}}">
+                            <button type="submit" class="btn btn-primary btn-sm">X</a>
+                        </form>
+                        </td>
                   </tr>
                 @endforeach
                 @endif
               </tbody>
             </table>
           </div>
-        </form>
       </div>
 
       <div class="row">
         <div class="col-md-6">
-          <div class="row mb-5">
-            <div class="col-md-6 mb-3 mb-md-0">
-              <button class="btn btn-primary btn-sm btn-block">Sepeti Güncelle</button>
-            </div>
-            <div class="col-md-6">
-              <button class="btn btn-outline-primary btn-sm btn-block">Ödeme Yap</button>
-            </div>
-          </div>
           <div class="row">
             <div class="col-md-12">
               <label class="text-black h4" for="coupon">İndirim Kuponu</label>
@@ -103,7 +106,7 @@
 
               <div class="row">
                 <div class="col-md-12">
-                  <button class="btn btn-primary btn-lg py-3 btn-block" onclick="window.location='checkout.html'">Proceed To Checkout</button>
+                  <button class="btn btn-primary btn-lg py-3 btn-block" onclick="window.location='checkout.html'">Odeme yap</button>
                 </div>
               </div>
             </div>

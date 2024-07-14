@@ -24,7 +24,13 @@ class SiteSettingMiddleware
 
         $categories = Category::where('status','1')->with('subcategory')->withCount('items')->get();
 
-        view()->share(['settings' => $settings, 'categories'=>$categories]);
+        $countQty = 0;
+        $cartItem = session('cart',[]);
+        foreach ($cartItem as $cart) {
+            $countQty += $cart['qty'];
+        }
+
+        view()->share(['settings' => $settings, 'categories'=>$categories, 'countQty'=>$countQty]);
 
         $response = $next($request);
 
