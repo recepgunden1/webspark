@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\PageHomeController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\CustomAuthController;
 
 Route::group(['middleware'=>'sitesetting'],function(){
 
@@ -35,9 +36,13 @@ Route::group(['middleware'=>'sitesetting'],function(){
 
     Route::post('/sepet/remove',[CartController::class,'remove'])->name('sepet.remove');
 
+    Auth::routes();
+
+    Route::get('/cikis',[AjaxController::class,'logout'])->name('cikis');
+
 });
 
-Route::group(['middleware'=>'panelsetting','prefix'=>'panel'],function(){
+Route::group(['middleware'=>['panelsetting','auth'],'prefix'=>'panel','as'=>'panel.'],function(){
 
-    Route::get('/',[DashboardController::class,'index'])->name('panel');
+    Route::get('/',[DashboardController::class,'index'])->name('index');
 });
