@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\PageHomeController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\Backend\DashboardController;
 
-    Route::group(['middleware'=>'sitesetting'],function(){
+Route::group(['middleware'=>'sitesetting'],function(){
 
     Route::get('/',[PageHomeController::class,'anasayfa'])->name('anasayfa');
 
@@ -34,4 +35,9 @@ use App\Http\Controllers\AjaxController;
 
     Route::post('/sepet/remove',[CartController::class,'remove'])->name('sepet.remove');
 
+});
+
+Route::group(['middleware'=>'panelsetting','prefix'=>'panel'],function(){
+
+    Route::get('/',[DashboardController::class,'index'])->name('panel');
 });
