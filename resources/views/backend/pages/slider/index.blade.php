@@ -9,6 +9,11 @@
           <p class="card-description">
             <a href="{{route('panel.slider.create')}}" class="btn btn-primary">Yeni</a>
           </p>
+            @if (session()->get('success'))
+                    <div class="alert alert-success">
+                        {{session()->get('success')}}
+                    </div>
+            @endif
           <div class="table-responsive">
             <table class="table">
               <thead>
@@ -37,6 +42,7 @@
                         <td class="d-flex">
                             <a href="{{route('panel.slider.edit',$slider->id)}}" class="btn btn-primary mr-2">Düzenle</a>
                             <form action="{{route('panel.slider.destroy',$slider->id)}}" method="POST">
+                                @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Sil</button>
                             </form>

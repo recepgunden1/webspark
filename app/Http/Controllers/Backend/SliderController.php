@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SliderRequest;
 use Illuminate\Http\Request;
 use App\Models\Slider;
+use Str;
 
 class SliderController extends Controller
 {
@@ -22,15 +25,36 @@ class SliderController extends Controller
      */
     public function create()
     {
-        return view('backend.pages.slider.create');
+        return view('backend.pages.slider.edit');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SliderRequest $request)
     {
-        //
+        $dosyadi = null;
+        $resimurl = null;
+
+        if ($request->hasFile('image')) {
+            $resim = $request->file('image');
+            $dosyadi = time() . '-' . Str::slug($request->name) . '.' . $resim->getClientOriginalExtension();
+            $resim->move(public_path('img/slider'), $dosyadi);
+
+
+            $resimurl = asset('img/slider/' . $dosyadi);
+        }
+
+
+        Slider::create([
+            'name'=>$request->name,
+            'link'=>$request->link,
+            'content'=>$request->content,
+            'status'=>$request->status,
+            'image' => $resimurl ?? NULL,
+        ]);
+
+        return back()->withSuccess('Basariyla olusturuldu');
     }
 
     /**
@@ -47,7 +71,7 @@ class SliderController extends Controller
     public function edit(string $id)
     {
         $slider = Slider::where('id',$id)->first();
-        return view('backend.pages.slider.create',compact('slider'));
+        return view('backend.pages.slider.edit',compact('slider'));
     }
 
     /**
@@ -55,14 +79,46 @@ class SliderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $dosyadi = null;
+        $resimurl = null;
+
+        if ($request->hasFile('image')) {
+            $resim = $request->file('image');
+            $dosyadi = time() . '-' . Str::slug($request->name) . '.' . $resim->getClientOriginalExtension();
+            $resim->move(public_path('img/slider'), $dosyadi);
+
+
+            $resimurl = asset('img/slider/' . $dosyadi);
+        }
+
+        Slider::where('id', $id)->update([
+            'name' => $request->name,
+            'link' => $request->link,
+            'content' => $request->content,
+            'status' => $request->status,
+            'image' => $resimurl ?? NULL,
+        ]);
+
+        return back()->withSuccess('Başarıyla güncellendi');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $slider = Slider::where('id', $id)->firstOrFail();
+
+        if (!empty($slider->image)) {
+            $filePath = 'public/img/slider/' . $slider->image;
+
+            if (Storage::exists($filePath)) {
+                Storage::delete($filePath);
+            }
+        }
+
+        $slider->delete();
+        return back()->withSuccess('Başarıyla Silindi');
     }
 }
