@@ -106,26 +106,21 @@ class SliderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        $slider = Slider::where('id', $id)->firstOrFail();
+        $slider = Slider::where('id',$request->id)->firstOrFail();
 
-        if (!empty($slider->image)) {
-            $filePath = 'public/img/slider/' . $slider->image;
 
-            if (Storage::exists($filePath)) {
-                Storage::delete($filePath);
-            }
-        }
 
+        dosyasil($slider->image);
         $slider->delete();
-        return back()->withSuccess('Başarıyla Silindi');
+        return response(['error'=>false,'message'=>'Basariyla silindi.']);
     }
 
     public function status(Request $request) {
         $update = $request->statu;
-        $updatecheck = $update == true ?  'aktif' : 'pasif';
-        Slider::where('id',$request->id)->update(['status'=>$update]);
+        $updatecheck = $update == "false" ?  '0' : '1';
+        Slider::where('id',$request->id)->update(['status'=>$updatecheck]);
         return response(['error'=>false,'status'=>$update]);
     }
 }

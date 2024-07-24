@@ -29,7 +29,7 @@
               <tbody>
                 @if (!empty($sliders) && $sliders->count() > 0)
                     @foreach ($sliders as $slider)
-                        <tr>
+                        <tr class="item" item-id="{{$slider->id}}">
                         <td class="py-1">
                             <img src="{{asset($slider->image)}}" alt="image"/>
                         </td>
@@ -37,7 +37,7 @@
                         <td>{{$slider->content ?? ''}}</td>
                         <td>{{$slider->link}}</td>
                         <td>
-                            <div class="checkbox" item-id="{{$slider->id}}">
+                            <div class="checkbox">
                                 <label>
                                   <input type="checkbox" class="durum" data-on="Aktif" data-off="Pasif" data-onstyle="success" data-offstyle="danger" {{$slider->status == '1' ? 'chechked' : ''}} data-toggle="toggle">
                                 </label>
@@ -45,11 +45,14 @@
                         </td>
                         <td class="d-flex">
                             <a href="{{route('panel.slider.edit',$slider->id)}}" class="btn btn-primary mr-2">Düzenle</a>
-                            <form action="{{route('panel.slider.destroy',$slider->id)}}" method="POST">
+                             {{-- <form action="{{route('panel.slider.destroy',$slider->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Sil</button>
-                            </form>
+                            </form> --}}
+
+                            <button type="button" class="silBtn btn btn-danger">Sil</button>
+
                         </td>
                         </tr>
                     @endforeach
@@ -67,7 +70,7 @@
   <script>
 
     $(document).on('change', '.durum', function(e) {
-        id = $(this).closest('.checkbox').attr('item-id');
+        id = $(this).closest('.item').attr('item-id');
         statu = $(this).prop('checked');
         $.ajax({
             headers: {
@@ -88,6 +91,37 @@
                 }
             }
         });
+    });
+
+    $(document).on('click', '.silBtn', function(e) {
+    e.preventDefault();
+        var item = $(this).closest('.item');
+        id = item.attr('item-id');
+        alertify.confirm("Silmek istedigine emin misin.","Silmek istedigine emin misin.",
+            function(){
+                $.ajax({
+                    headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type:"DELETE",
+                    url:"{{route('panel.slider.destroy')}}",
+                    data:{
+                        id:id,
+                    },
+                    success: function (response) {
+                        if (response.error == false)
+                        {
+                            item.remove();
+                            alertify.success(response.message);
+                        }else {
+                            alertify.error("Bir hata olustu");
+                        }
+                    }
+                });
+            },
+            function(){
+                alertify.error('iptal edildi');
+            });
     });
 
   </script>
