@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\PageHomeController;
@@ -60,4 +61,12 @@ Route::group(['middleware'=>['panelsetting','auth'],'prefix'=>'panel','as'=>'pan
     Route::delete('/slider/destroy',[SliderController::class,'destroy'])->name('slider.destroy');
 
     Route::post('/slider-durum/update',[SliderController::class,'status'])->name('slider.status');
+
+
+
+    Route::resource('/category', CategoryController::class)->except('destroy');
+
+    Route::delete('/category/destroy',[CategoryController::class,'destroy'])->name('category.destroy');
+
+    Route::post('/category-durum/update',[CategoryController::class,'status'])->name('category.status');
 });

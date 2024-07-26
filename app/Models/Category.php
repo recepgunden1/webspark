@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Models;
+
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    use Sluggable;
+    use HasFactory, Sluggable;
+
     protected $fillable = [
         'name',
         'thumbnail',
@@ -23,7 +25,11 @@ class Category extends Model
     }
 
     public function subcategory(){
-        return $this->hasmany(Category::class,'cat_ust','id');
+        return $this->hasMany(Category::class,'cat_ust','id');
+    }
+
+    public function parentCategory(){
+        return $this->belongsTo(Category::class, 'cat_ust');
     }
 
     public function getTotalProductCount()
