@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\Backend\CategoryController;
-use App\Http\Controllers\CartController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Frontend\PageHomeController;
-use App\Http\Controllers\Frontend\PageController;
-use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\Backend\DashboardController;
-use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\Frontend\PageHomeController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\AboutController;
+use App\Http\Controllers\Frontend\PageController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\AjaxController;
+use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware'=>'sitesetting'],function(){
 
@@ -69,4 +69,11 @@ Route::group(['middleware'=>['panelsetting','auth'],'prefix'=>'panel','as'=>'pan
     Route::delete('/category/destroy',[CategoryController::class,'destroy'])->name('category.destroy');
 
     Route::post('/category-durum/update',[CategoryController::class,'status'])->name('category.status');
+
+
+
+    Route::get('/about', [AboutController::class,'index'])->name('about.index');
+
+    Route::post('/about/update', [AboutController::class,'update'])->name('about.update');
+
 });
