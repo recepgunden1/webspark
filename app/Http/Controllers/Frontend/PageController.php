@@ -14,23 +14,23 @@ class PageController extends Controller
     {
         $category = request()->segment(1) && null;
 
-        $size = $request->size ?? null;
-        $color = $request->color ?? null;
-        $startprice = $request->start_price ?? null;
-        $endprice = $request->end_price ?? null;
+        $sizes = $request->size ?? null;
+        $colors = $request->color ?? null;
+        $startprice = $request->min ?? null;
+        $endprice = $request->max ?? null;
         $order = $request->order ?? 'id';
         $sort = $request->sort ?? 'desc';
 
         $products = Product::where('status','1')->select(['id','name','slug','size','color','price','category_id','image'])
-        ->where(function($q) use($size,$color,$startprice,$endprice) {
-            if(!empty($size))
+        ->where(function($q) use($sizes,$colors,$startprice,$endprice) {
+            if(!empty($sizes))
             {
-                $q->where('size',$size);
+                $q->whereIn('size',$sizes);
             }
 
-            if(!empty($color))
+            if(!empty($colors))
             {
-                $q->where('color',$color);
+                $q->whereIn('color',$colors);
             }
 
             if(!empty($startprice) && $endprice)
@@ -47,15 +47,14 @@ class PageController extends Controller
             return $q;
         });
 
-        $minprice = $products->min('price');
-        $maxprice = $products->max('price');
-
         $sizelists = Product::where('status','1')->groupBy('size')->pluck('size')->toArray();
         $colors = Product::where('status','1')->groupBy('color')->pluck('color')->toArray();
 
         $products = $products->orderBy($order,$sort)->paginate(21);
 
-        return view('frontend.pages.products',compact('products','minprice','maxprice','sizelists','colors'));
+        $maxprice = Product::max('price');
+
+        return view('frontend.pages.products',compact('products','maxprice','sizelists','colors'));
     }
 
     public function urundetay($slug)
