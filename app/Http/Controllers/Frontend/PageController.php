@@ -14,8 +14,8 @@ class PageController extends Controller
     {
         $category = request()->segment(1) && null;
 
-        $sizes = $request->size ?? null;
-        $colors = $request->color ?? null;
+        $sizes = !empty($request->size) ? explode(',',$request->size) : null;
+        $colors = !empty($request->color) ? explode(',',$request->color) : null;
         $startprice = $request->min ?? null;
         $endprice = $request->max ?? null;
         $order = $request->order ?? 'id';

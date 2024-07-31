@@ -112,7 +112,7 @@
               @if (!empty($sizelists))
                   @foreach ($sizelists as $key => $size)
                   <label for="size{{$key}}" class="d-flex">
-                    <input type="checkbox" id="size{{$key}}" {{isset(request()->size) && in_array($size,request()->size) ? 'checked' : '' }} class="mr-2 mt-1"> <span class="text-black">{{$size}}</span>
+                    <input type="checkbox" id="size{{$key}}" value="{{ $size }}" {{ isset(request()->size) && in_array($size, explode(',', request()->size)) ? 'checked' : '' }} class="mr-2 mt-1 sizeList"> <span class="text-black">{{$size}}</span>
                   </label>
                   @endforeach
               @endif
@@ -121,16 +121,16 @@
             <div class="mb-4">
               <h3 class="mb-3 h6 text-uppercase text-black d-block">Renk</h3>
               @if (!empty($colors))
-              @foreach ($colors  as $key => $color)
+              @foreach ($colors as $key => $color)
               <label for="color{{$key}}" class="d-flex">
-                <input type="checkbox" id="color{{$key}}" {{isset(request()->color) && in_array($color,request()->color) ? 'checked' : '' }} class="mr-2 mt-1"> <span class="text-black">{{$color}}</span>
+                <input type="checkbox" id="color{{$key}}" value="{{ $color }}" {{ isset(request()->color) && in_array($color, explode(',', request()->color)) ? 'checked' : '' }} class="mr-2 mt-1 colorList"> <span class="text-black">{{$color}}</span>
               </label>
               @endforeach
               @endif
             </div>
 
             <div class="mb-4">
-                <button class="btn btn-block btn-primary">Filtrele</button>
+                <button class="btn btn-block btn-primary filterBtn">Filtrele</button>
             </div>
 
           </div>
@@ -179,5 +179,35 @@
         var defaultminprice = "{{request()->min ?? 0}}";
 
         var defaultmaxprice = "{{request()->max ?? $maxprice}}";
+
+        $(document).ready(function() {
+            var url = new URL(window.location.href);
+
+            $(document).on('click', '.filterBtn', function(e) {
+                e.preventDefault(); // Varsayılan form gönderimini engelle
+
+                let colorList = $(".colorList:checked").map((_, chk) => chk.value).get();
+                let sizeList = $(".sizeList:checked").map((_, chk) => chk.value).get();
+
+                if (colorList.length > 0) {
+                    url.searchParams.set("color", colorList.join(","));
+                } else {
+                    url.searchParams.delete('color');
+                }
+
+                if (sizeList.length > 0) {
+                    url.searchParams.set("size", sizeList.join(","));
+                } else {
+                    url.searchParams.delete('size');
+                }
+
+                let newUrl = url.href;
+                window.history.pushState({}, '', newUrl);
+
+                // Sayfayı güncelle
+                location.href = newUrl;
+            });
+        });
+
     </script>
 @endsection
