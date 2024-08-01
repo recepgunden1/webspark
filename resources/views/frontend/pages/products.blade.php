@@ -23,14 +23,13 @@
                 <div class="dropdown mr-1 ml-md-auto">
                 </div>
                 <div class="btn-group">
-                  <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference" data-toggle="dropdown">Sırala</button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                    <a class="dropdown-item" href="#" data-sira="a_z_order">A-Z ye sırala</a>
-                    <a class="dropdown-item" href="#" data-sira="z_a_order">Z-A ya sırala</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" data-sira="price_min_order">Düşük fiyattan yükseğe sırala</a>
-                    <a class="dropdown-item" href="#" data-sira="price_max_order">Yüksek fiyattan düşüğe sırala</a>
-                  </div>
+                  <select class="form-control" id="orderList">
+                    <option class="dropdown-item" value="">Sırala...</option>
+                    <option class="dropdown-item" value="id-asc">A-Z ye sırala</option>
+                    <option class="dropdown-item" value="id-desc">Z-A ya sırala</option>
+                    <option class="dropdown-item" value="price-asc">Düşük fiyattan yükseğe sırala</option>
+                    <option class="dropdown-item" value="price-desc">Yüksek fiyattan düşüğe sırala</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -105,6 +104,7 @@
               <h3 class="mb-3 h6 text-uppercase text-black d-block">Fiyata Gore Sirala</h3>
               <div id="slider-range" class="border-primary"></div>
               <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
+              <input type="text" name="text" id="priceBetween" class="form-control" />
             </div>
 
             <div class="mb-4">
@@ -175,38 +175,54 @@
 @section('customjs')
     <script>
         var maxprice = "{{$maxprice}}";
-
         var defaultminprice = "{{request()->min ?? 0}}";
-
         var defaultmaxprice = "{{request()->max ?? $maxprice}}";
 
-        $(document).ready(function() {
-            var url = new URL(window.location.href);
+        var url = new URL(window.location.href);
 
-            $(document).on('click', '.filterBtn', function(e) {
-                e.preventDefault(); // Varsayılan form gönderimini engelle
+        $(document).on('click', '.filterBtn', function(e) {
+            filtrele(e);
+        });
 
-                let colorList = $(".colorList:checked").map((_, chk) => chk.value).get();
-                let sizeList = $(".sizeList:checked").map((_, chk) => chk.value).get();
+        function filtrele(e) {
+            e.preventDefault();
 
-                if (colorList.length > 0) {
-                    url.searchParams.set("color", colorList.join(","));
-                } else {
-                    url.searchParams.delete('color');
-                }
+            let colorList = $(".colorList:checked").map((_, chk) => chk.value).get();
+            let sizeList = $(".sizeList:checked").map((_, chk) => chk.value).get();
 
-                if (sizeList.length > 0) {
-                    url.searchParams.set("size", sizeList.join(","));
-                } else {
-                    url.searchParams.delete('size');
-                }
+            if (colorList.length > 0) {
+                url.searchParams.set("color", colorList.join(","));
+            } else {
+                url.searchParams.delete('color');
+            }
 
-                let newUrl = url.href;
-                window.history.pushState({}, '', newUrl);
+            if (sizeList.length > 0) {
+                url.searchParams.set("size", sizeList.join(","));
+            } else {
+                url.searchParams.delete('size');
+            }
 
-                // Sayfayı güncelle
-                location.href = newUrl;
-            });
+            var price = $('#priceBetween').val().split('-');
+            url.searchParams.set("min", price[0]);
+            url.searchParams.set("max", price[1]);
+
+            let newUrl = url.href;
+            window.history.pushState({}, '', newUrl);
+
+            location.href = newUrl;
+        }
+
+        $(document).on('change', '#orderList', function(e) {
+            var order = $(this).val();
+            if(order != ''){
+                var orderBy = order.split('-');
+                url.searchParams.set("order", orderBy[0]);
+                url.searchParams.set("sort", orderBy[1]);
+            } else {
+                url.searchParams.delete('order');
+                url.searchParams.delete('sort');
+            }
+            filtrele(e);
         });
 
     </script>
