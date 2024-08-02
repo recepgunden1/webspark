@@ -33,7 +33,7 @@
                         @method('PUT')
                     @endif
 
-                    <select name="set_type" class="form-control">
+                    <select name="set_type" class="form-control" id="setTypeSelect">
                         <option value="">Tür Seçiniz</option>
                         <option value="ckeditor" {{isset($setting->set_type) && $setting->set_type == 'ckeditor' ? 'selected' : ''}}>Ckeditor</option>
                         <option value="textarea" {{isset($setting->set_type) && $setting->set_type == 'textarea' ? 'selected' : ''}}>TextArea</option>
@@ -92,4 +92,62 @@
             </div>
           </div>
     </div>
+@endsection
+
+@section('customjs')
+
+    <script>
+        $(document).on('change', '#setTypeSelect', function(e) {
+            selectType = $(this).val();
+            createInput(selectType);
+        });
+
+        function createInput(type) {
+            defaultText = "{!! $setting->data ?? '' !!}";
+
+            if(type === 'text') {
+                newInput = $('<input>').attr({
+                    type: 'text',
+                    name: 'data',
+                    value: defaultText,
+                    class: 'form-control',
+                    placeholder: 'Value giriniz',
+                });
+            }
+            else if(type === 'email') {
+                newInput = $('<input>').attr({
+                    type: 'email',
+                    name: 'data',
+                    value: defaultText,
+                    class: 'form-control',
+                    placeholder: 'E-posta giriniz',
+                });
+            }
+            else if(type === 'file' || type==='image') {
+                newInput = $('<input>').attr({
+                    type: 'file',
+                    name: 'data',
+                });
+            }
+            else if(type === 'ckeditor') {
+                newInput = $('<textarea>').attr({
+                    name: 'data',
+                    value: defaultText,
+                    placeholder: 'Textarea',
+                    Class: 'form-control',
+                });
+            }
+            else if(type === 'textarea') {
+                newInput = $('<textarea>').attr({
+                    name: 'data',
+                    value: defaultText,
+                    placeholder: 'Textarea',
+                    Class: 'form-control',
+                });
+            }
+
+            $('.inputContent').empty().append(newInput);
+        }
+    </script>
+
 @endsection
