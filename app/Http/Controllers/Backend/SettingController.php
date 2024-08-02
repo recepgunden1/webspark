@@ -35,7 +35,23 @@ class SettingController extends Controller
         return view('backend.pages.setting.edit',compact('setting'));
     }
 
-    public function update($id) {
-        $setting = SiteSetting::where('id',$id)->first();
+    public function update(Request $request, $id) {
+        $setting = SiteSetting::where('id', $id)->first();
+        $key = $request->name;
+
+        if ($request->hasFile('data')) {
+            $resim = $request->file('data');
+            $dosyaAdi = $key . '.' . $resim->getClientOriginalExtension();
+            $resim->move(public_path('img/site'), $dosyaAdi);
+            $resimurl = asset('img/site/' . $dosyaAdi);
+        }
+
+        $setting->update([
+            'name' => $key,
+            'data' => $resimurl ?? $request->data,
+            'set_type' => $request->set_type,
+        ]);
+
+        return back()->withSuccess('Başarılı');
     }
 }

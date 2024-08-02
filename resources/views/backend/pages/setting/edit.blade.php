@@ -36,6 +36,7 @@
                     <select name="set_type" class="form-control">
                         <option value="">Tür Seçiniz</option>
                         <option value="ckeditor" {{isset($setting->set_type) && $setting->set_type == 'ckeditor' ? 'selected' : ''}}>Ckeditor</option>
+                        <option value="textarea" {{isset($setting->set_type) && $setting->set_type == 'textarea' ? 'selected' : ''}}>TextArea</option>
                         <option value="file" {{isset($setting->set_type) && $setting->set_type == 'file' ? 'selected' : ''}}>File</option>
                         <option value="image" {{isset($setting->set_type) && $setting->set_type == 'image' ? 'selected' : ''}}>Resim</option>
                         <option value="text" {{isset($setting->set_type) && $setting->set_type == 'text' ? 'selected' : ''}}>Text</option>
@@ -43,7 +44,9 @@
                     </select>
                     <div class="form-group">
                         <div class="input-group col-xs-12">
-                         <img src="{{asset($setting->image ?? 'img/resimyok.webp')}}" alt="">
+                            @if (isset($setting->set_type) && $setting->set_type == 'image')
+                                <img src="{{asset($setting->data ?? 'img/resimyok.webp')}}" alt="">
+                            @endif
                         </div>
                       </div>
 
@@ -65,7 +68,21 @@
                   </div>
                   <div class="form-group">
                     <label for="data">Value</label>
-                    <textarea class="form-control" id="data" name="data" placeholder="Data" rows="3">{{$setting->data ?? ''}}</textarea>
+
+                    <div class="inputContent">
+                        @if (isset($setting->set_type) && $setting->set_type == 'ckeditor')
+                        <textarea class="form-control" id="editor" name="data" placeholder="Data" rows="3">{{$setting->data ?? ''}}</textarea>
+                        @elseif (isset($setting->set_type) && $setting->set_type == 'textarea')
+                        <textarea class="form-control" id="data" name="data" placeholder="Data" rows="3">{{$setting->data ?? ''}}</textarea>
+                        @elseif (isset($setting->set_type) && $setting->set_type == 'image' || isset($setting->set_type) && $setting->set_type == 'file')
+                        <input type="file" name="data">
+                        @elseif (isset($setting->set_type) && $setting->set_type == 'text')
+                        <input type="text" name="data" value="{{$setting->data ?? ''}}" class="form-control">
+                        @elseif (isset($setting->set_type) && $setting->set_type == 'email')
+                        <input type="email" value="{{$setting->data ?? ''}}" class="form-control">
+                        @else
+                        @endif
+                    </div>
                   </div>
 
                   <button type="submit" class="btn btn-primary mr-2">Submit</button>
