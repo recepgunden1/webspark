@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DashboardController;
@@ -73,6 +74,14 @@ Route::group(['middleware'=>['panelsetting','auth'],'prefix'=>'panel','as'=>'pan
     Route::delete('/category/destroy',[CategoryController::class,'destroy'])->name('category.destroy');
 
     Route::post('/category-durum/update',[CategoryController::class,'status'])->name('category.status');
+
+
+
+    Route::resource('/product', ProductController::class)->except('destroy');
+
+    Route::delete('/product/destroy',[ProductController::class,'destroy'])->name('product.destroy');
+
+    Route::post('/product-durum/update',[ProductController::class,'status'])->name('product.status');
 
 
 
