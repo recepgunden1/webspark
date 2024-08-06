@@ -55,6 +55,37 @@ class CartController extends Controller
         return back()->withSuccess('Urun eklendi');
     }
 
+    public function newQty(Request $request) {
+        $productID= $request->product_id;
+        $qty= $request->qty ?? 1;
+        $size= $request->size;
+        $urun = Product::find($productID);
+        if(!$urun) {
+            return response()->json('Ürün Bulanamadı!');
+        }
+        $cartItem = session('cart', []);
+
+        if(array_key_exists($productID, $cartItem)){
+            $cartItem[$productID] ['qty'] = $qty;
+            if($qty == 0 || $qty < 0) {
+                unset($cartItem[$productID]);
+            }
+        }else{
+            $cartItem[$productID]=[
+                'image'=>$urun->image,
+                'name'=>$urun->name,
+                'price'=>$urun->price,
+                'qty'=>$qty,
+                'size'=>$size,
+            ];
+        }
+        session(['cart'=>$cartItem]);
+
+        if($request->ajax()) {
+            return response()->json('Sepet Güncellendi');
+        }
+    }
+
     public function remove(Request $request) {
         $productId = $request->product_id;
         $cartItem = session('cart',[]);
