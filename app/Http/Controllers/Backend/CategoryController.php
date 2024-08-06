@@ -97,7 +97,7 @@ class CategoryController extends Controller
             'cat_ust'=>$request->cat_ust,
             'status'=>$request->status,
             'content'=>$request->content,
-            'image' => $resimurl ?? NULL,
+            'image' => $resimurl ?? $category->image,
         ]);
 
         return back()->withSuccess('Başarıyla güncellendi');

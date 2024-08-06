@@ -96,7 +96,7 @@ class SliderController extends Controller
             'link' => $request->link,
             'content' => $request->content,
             'status' => $request->status,
-            'image' => $resimurl ?? NULL,
+            'image' => $resimurl ?? $slider->image,
         ]);
 
         return back()->withSuccess('Başarıyla güncellendi');

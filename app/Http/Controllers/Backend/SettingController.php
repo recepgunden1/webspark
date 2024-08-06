@@ -46,9 +46,15 @@ class SettingController extends Controller
             $resimurl = asset('img/site/' . $dosyaAdi);
         }
 
+        if($request->set_type == 'file' || $request->set_type == 'image') {
+            $dataItem = $resimurl ?? $setting->data;
+        }else{
+            $dataItem = $request->data ?? $setting->data;
+        }
+
         $setting->update([
             'name' => $key,
-            'data' => $resimurl ?? $request->data,
+            'data' => $dataItem,
             'set_type' => $request->set_type,
         ]);
 

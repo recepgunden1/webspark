@@ -26,10 +26,12 @@ class AboutController extends Controller
             $resimurl = 'img/about/' . $dosyadi;
         }
 
+        $about = About::where('id',$id)->first();
+
         About::updateOrCreate(
             ['id' => $id],
             [
-                'image' => $resimurl ?? null,
+                'image' => $resimurl ?? $about->image,
                 'name' => $request->name,
                 'content' => $request->content,
                 'text_1_icon' => $request->text_1_icon,
