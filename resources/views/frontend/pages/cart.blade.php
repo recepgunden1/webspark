@@ -133,7 +133,7 @@
         $(this).closest('.orderItem').addClass('selected');
         var product_id = $('.selected').closest('.orderItem').attr('data-id');
         var qty = $('.selected').closest('.orderItem').find('.qtyItem').val();
-        sepetUpdate(product_id, qty, 'Azalt');
+        sepetUpdate(product_id, qty);
     });
 
     $(document).on('click', '.increaseBtn', function(e) {
@@ -141,7 +141,7 @@
         $(this).closest('.orderItem').addClass('selected');
         var product_id = $('.selected').closest('.orderItem').attr('data-id');
         var qty = $('.selected').closest('.orderItem').find('.qtyItem').val();
-        sepetUpdate(product_id, qty, 'Arttır');
+        sepetUpdate(product_id, qty);
     });
 
     function sepetUpdate(product_id, qty, itemevent) {
