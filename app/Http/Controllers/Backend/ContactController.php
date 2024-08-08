@@ -9,7 +9,7 @@ use App\Models\Contact;
 class ContactController extends Controller
 {
     public function index() {
-        $contacts = Contact::paginate(1);
+        $contacts = Contact::paginate(50);
         return view('backend.pages.contact.index',compact('contacts'));
     }
 
