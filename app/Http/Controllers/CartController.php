@@ -29,6 +29,27 @@ class CartController extends Controller
         return view('frontend.pages.cart',compact('cartItem'));
     }
 
+    public function sepetform() {
+
+        $cartItem = session('cart',[]);
+        $totalPrice = 0;
+
+        foreach ($cartItem as $cart) {
+            $totalPrice += $cart['price'] * $cart['qty'];
+        }
+
+        if(session()->get('coupon_code')) {
+            $kupon = Coupon::where('name',session()->get('coupon_code'))->where('status','1')->first();
+            $kuponprice = $kupon->price ?? 0;
+            $kuponcode = $kupon->name ?? '';
+            $newtotalPrice = $totalPrice - $kuponprice;
+        } else{
+            $newtotalPrice = $totalPrice;
+        }
+        session()->put('total_price',$newtotalPrice);
+        return view('frontend.pages.cartform',compact('cartItem'));
+    }
+
     public function add(Request $request) {
         $productId = $request->product_id;
         $qty = $request->qty ?? 1;
@@ -120,5 +141,9 @@ class CartController extends Controller
         session()->put('coupon_code',$kuponcode);
 
         return back()->withSuccess('Kupon Uygulandı')->with('newtotalPrice');
+    }
+
+    public function cartSave(Request $request) {
+        dd($request->all());
     }
 }

@@ -125,7 +125,11 @@
 @section('customjs')
 <script>
     $(document).on('click', '.paymentButton', function(e) {
-        // Ödeme yapma işlemleri burada yapılabilir
+        var url = "{{route('sepet.form')}}";
+
+        @if(!empty(session()->get('cart')))
+        window.location.href = url;
+        @endif
     });
 
     $(document).on('click', '.decreaseBtn', function(e) {
