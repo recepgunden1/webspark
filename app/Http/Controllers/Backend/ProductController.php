@@ -85,7 +85,7 @@ class ProductController extends Controller
     */
     public function update(ProductRequest $request, string $id)
     {
-        $product = Product::findOrFail($id); // 'where' yerine 'findOrFail' kullanımı daha iyi
+        $product = Product::findOrFail($id);
 
         $resimurl = null;
 

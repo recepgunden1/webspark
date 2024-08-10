@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Backend\AboutController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\ContactController;
@@ -95,6 +96,8 @@ Route::group(['middleware'=>['panelsetting','auth'],'prefix'=>'panel','as'=>'pan
 
     Route::post('/about/update', [AboutController::class,'update'])->name('about.update');
 
+
+
     Route::get('/contact', [ContactController::class,'index'])->name('contact.index');
 
     Route::get('/contact/{id}/edit', [ContactController::class,'edit'])->name('contact.edit');
@@ -104,6 +107,18 @@ Route::group(['middleware'=>['panelsetting','auth'],'prefix'=>'panel','as'=>'pan
     Route::delete('/contact/destroy',[ContactController::class,'destroy'])->name('contact.destroy');
 
     Route::post('/contact-durum/update',[ContactController::class,'status'])->name('contact.status');
+
+
+
+    Route::get('/order', [OrderController::class,'index'])->name('order.index');
+
+    Route::get('/order/{id}/edit', [OrderController::class,'edit'])->name('order.edit');
+
+    Route::put('/order/{id}/update', [OrderController::class,'update'])->name('order.update');
+
+    Route::delete('/order/destroy',[OrderController::class,'destroy'])->name('order.destroy');
+
+    Route::post('/order-durum/update',[OrderController::class,'status'])->name('order.status');
 
 
 
