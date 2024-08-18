@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
     public function index() {
+        $breadcrumb = [
+            'sayfalar' => [],
+            'active' => 'Sepet'
+        ];
+
         $cartItem = session('cart',[]);
         $totalPrice = 0;
 
@@ -27,10 +32,15 @@ class CartController extends Controller
             $newtotalPrice = $totalPrice;
         }
         session()->put('total_price',$newtotalPrice);
-        return view('frontend.pages.cart',compact('cartItem'));
+        return view('frontend.pages.cart',compact('cartItem','breadcrumb'));
     }
 
     public function sepetform() {
+        $breadcrumb = [
+            'sayfalar' => [],
+            'active' => 'Sepet Formu'
+        ];
+
         $cartItem = session('cart',[]);
         $totalPrice = 0;
 
@@ -47,7 +57,7 @@ class CartController extends Controller
             $newtotalPrice = $totalPrice;
         }
         session()->put('total_price',$newtotalPrice);
-        return view('frontend.pages.cartform',compact('cartItem'));
+        return view('frontend.pages.cartform',compact('cartItem','breadcrumb'));
     }
 
     public function add(Request $request) {
