@@ -4,7 +4,6 @@
 Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test amaçlıdır hepsi düzeltilecektir...
 
 ## TO DO LIST
- - [ ] sepette adet arttırınca sayfa otomatik yenilenecek
 
  - [ ] slider statuslar pasif görünüyor panele her girişte
 
@@ -67,3 +66,5 @@ Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test am
  - [ ] panel örn. siparişler tablosuna girince başlıkta "Basic Table" yazıyor
 
  - [ ] panel anasayfa tablo sağdan boşluk bırakılmalı
+
+ - [ ] sepette adet arttırınca sayfa otomatik yenilenecek
