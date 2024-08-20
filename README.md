@@ -5,62 +5,34 @@ Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test am
 
 ## TO DO LIST
 
- - [ ] panel tüm placeholder'lar düzenlenecek
+ - [ ] İndirimdeki ürünler sayfası eksikmiş...
 
- - [ ] sipariş edildikten sonra ana sayfaya dönerken başarı mesajı yollanacak
+ - [ ] Paneldeki tüm placeholder'lar düzenlenecek.
 
- - [ ] admin paneli sipariş tablosu düzgün çalışmıyor (önceden yazmışım ne olduğunu bilmiyorum bakıcam)
+ - [ ] Sipariş edildikten sonra ana sayfaya dönerken başarı mesajı yollanacak.
 
- - [ ] github repo security sorunu düzeltilmesi lazım.
+ - [ ] Admin paneli sipariş tablosu düzgün çalışmıyor. (önceden yazmışım ne olduğunu bilmiyorum bakıcam)
 
- - [ ] indirimdeki ürünler sayfası eksik...
+ - [ ] Github reposundaki security uyarısı düzeltilmesi lazım.
 
- - [ ] panel gmail düzenleme ayarı çalışmıyor kontrol edilecek.
+ - [ ] Panel site ayarları kısmında gmail düzenleme ayarı çalışmıyor kontrol edilecek.
 
- - [ ] anasayfa arama özelliği eklenecek
+ - [ ] Anasayfa arama çubuğu kısmı işlevselleştirilecek.
 
- - [ ] sepet ikonu ve yanındakiler düzenlenecek (işlevsellik açısından)
+ - [ ] Sepet ikonu ve yanındakiler düzenlenecek. (işlevsellik açısından)
 
- - [ ] hakkımızda sayfası webspark logosu eklenecek
+ - [ ] Paneldeki gereksiz gelen kutusu bilgileri vs. diğerleri de dahil hepsi silinecek.
 
- - [ ] panel gereksiz gelen kutusu bilgileri vs diğerleri de dahil hepsi silinecek
+ - [ ] ürün eklerken form alanında 1 den fazla beden seçilebilecek.
 
- - [ ] panel footer düzenlenecek
+ - [ ] Success mesajları düzenlenecek.
 
- - [ ] panel header düzenlenecek
+ - [ ] Panel sidebar da kutucuklar birbirinden alakasız şekilde açılıp kapanıyor.
 
- - [ ] projedeki tüm dosyaların boşlukları düzenlenecek (ctrl+q)
+ - [ ] Anasayfa ürünlerimiz butonu link ayarlanmamış ürünler sayfasına gidecek
 
- - [ ] panel ve siteye logo + favicon eklenecek
+ - [ ] Ürünler sayfası filtreleme doğru çalışıyor mu test edilecek.
 
- - [ ] ürün eklerken form alanları içinde yazan yazılar yanlış
+ - [ ] Panel düzenleme ve oluşturma butonları türkçeye çevirilecek. (submit)
 
- - [ ] ürün eklerken form alanında 1 den fazla beden seçilebilecek
-
- - [ ] bilgilendirme mesajları düzenlenecek
-
- - [ ] dark mode eklenecek
-
- - [ ] kadın ve çocuk kategorisinde erkek ürünü de görünüyor fakat alt kategorilerde sorun olmuyor
-
- - [ ] siteye örnek ürün eklenecek
-
- - [ ] panel sidebar kutucuklar birbirinden alakasız şekilde açılıp kapanıyor
-
- - [ ] anasayfa ürünlerimiz butonu link ayarlanmamış ürünler sayfasına gidecek
-
- - [ ] ürünler sayfası sıralama doğru çalışıyor mu test edilecek
-
- - [ ] panel düzenleme ve oluşturma butonları türkçeye çevirilecek (submit)
-
- - [ ] panel sağ alt köşede bir ikon var kaldırılacak
-
- - [ ] panel ana menüye dönmek için buton eklenecek
-
- - [ ] panel örn. siparişler tablosuna girince başlıkta "Basic Table" yazıyor
-
- - [ ] panel anasayfa tablo sağdan boşluk bırakılmalı
-
- - [ ] sepette adet arttırınca sayfa otomatik yenilenecek
- 
- - [ ] sepette ürün 0 adet olunca sayfa yenilemeden silinmeli
+ - [ ] Panel de örn. siparişler tablosuna girince başlıkta "Basic Table" yazıyor.
