@@ -11,8 +11,8 @@ use Str;
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
+    * Display a listing of the resource.
+    */
     public function index()
     {
         $categories = Category::with('parentCategory:id,cat_ust,name')->get();
@@ -20,8 +20,8 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
+    * Show the form for creating a new resource.
+    */
     public function create()
     {
         $categories = Category::get();
@@ -29,8 +29,8 @@ class CategoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
+    * Store a newly created resource in storage.
+    */
     public function store(CategoryRequest $request)
     {
         $dosyadi = null;
@@ -58,16 +58,16 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
+    * Display the specified resource.
+    */
     public function show(string $id)
     {
         //
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
+    * Show the form for editing the specified resource.
+    */
     public function edit(string $id)
     {
         $category = Category::where('id', $id)->first();
@@ -76,10 +76,16 @@ class CategoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     */
+    * Update the specified resource in storage.
+    */
     public function update(Request $request, string $id)
     {
+        $category = Category::find($id); // Kategoriyi buluyoruz
+
+        if (!$category) {
+            return back()->withErrors('Kategori bulunamadı.');
+        }
+
         $dosyadi = null;
         $resimurl = null;
 
@@ -88,16 +94,15 @@ class CategoryController extends Controller
             $dosyadi = time() . '-' . Str::slug($request->name) . '.' . $resim->getClientOriginalExtension();
             $resim->move(public_path('img/kategori'), $dosyadi);
 
-
             $resimurl = asset('img/kategori/' . $dosyadi);
         }
 
-        Category::where('id', $id)->update([
-            'name'=>$request->name,
-            'cat_ust'=>$request->cat_ust,
-            'status'=>$request->status,
-            'content'=>$request->content,
-            'image' => $resimurl ?? $category->image,
+        $category->update([
+            'name' => $request->name,
+            'cat_ust' => $request->cat_ust,
+            'status' => $request->status,
+            'content' => $request->content,
+            'image' => $resimurl ?? $category->image, // Burada category tanımlı
         ]);
 
         return back()->withSuccess('Başarıyla güncellendi');
@@ -105,8 +110,8 @@ class CategoryController extends Controller
 
 
     /**
-     * Remove the specified resource from storage.
-     */
+    * Remove the specified resource from storage.
+    */
     public function destroy(Request $request)
     {
         $category = Category::where('id',$request->id)->firstOrFail();

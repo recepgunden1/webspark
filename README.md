@@ -65,3 +65,5 @@ Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test am
  - [ ] panel ana menüye dönmek için buton eklenecek
 
  - [ ] panel örn. siparişler tablosuna girince başlıkta "Basic Table" yazıyor
+
+ - [ ] panel anasayfa tablo sağdan boşluk bırakılmalı
