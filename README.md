@@ -36,6 +36,8 @@ Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test am
 
  - [ ] panel header düzenlenecek
 
+ - [ ] projedeki tüm dosyaların boşlukları düzenlenecek (ctrl+q)
+
  - [ ] panel ve siteye logo + favicon eklenecek
 
  - [ ] ürün eklerken form alanları içinde yazan yazılar yanlış
