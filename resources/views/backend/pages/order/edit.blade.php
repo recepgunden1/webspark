@@ -5,7 +5,7 @@
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Sipariş</h4>
+                <h4 class="card-title">Düzenle</h4>
                 @if ($errors)
                     @foreach ($errors->all() as $error)
                     <div class="alert alert-danger">
