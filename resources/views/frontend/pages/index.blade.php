@@ -96,7 +96,7 @@
                                 <div class="block-4-text p-4">
                                     <h3><a href="#">{{$item->name}}</a></h3>
                                     <p class="mb-0">{{$item->category->name}}</p>
-                                    <p class="text-primary font-weight-bold">${{$item->price}}</p>
+                                    <p class="text-primary font-weight-bold">₺{{$item->price}}</p>
                                 </div>
                             </div>
                         </div>

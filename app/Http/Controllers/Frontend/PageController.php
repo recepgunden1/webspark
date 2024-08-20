@@ -12,6 +12,7 @@ class PageController extends Controller
 {
     public function urunler(Request $request, $slug = null)
     {
+        // Ana kategori ve alt kategorileri bulma
         $category = request()->segment(1);
 
         $sizes = !empty($request->size) ? explode(',', $request->size) : null;
@@ -24,66 +25,72 @@ class PageController extends Controller
         $anakategori = null;
         $altkategori = null;
 
-        if (!empty($category) && empty($slug)) {
+        // Breadcrumb yapısını oluştur
+        $breadcrumb = [
+            'sayfalar' => [],
+            'active' => 'Ürün Detay'
+        ];
+
+        // Ana kategori ve alt kategoriyi bul
+        if (!empty($category)) {
             $anakategori = Category::where('slug', $category)->first();
-        } elseif (!empty($category) && !empty($slug)) {
-            $anakategori = Category::where('slug', $category)->first();
+        }
+
+        if (!empty($slug)) {
             $altkategori = Category::where('slug', $slug)->first();
         }
 
-        $breadcrumb = [
-            'sayfalar' => [],
-            'active' => 'Ürünler'
-        ];
-
-        if (!empty($anakategori) && empty($altkategori)) {
-            $breadcrumb['active'] = $anakategori->name;
+        // Ana kategori kontrolü
+        if (!$anakategori) {
+            return redirect()->back()->withErrors(['message' => 'Ana kategori bulunamadı.']);
         }
 
-        if (!empty($altkategori)) {
-            $breadcrumb['sayfalar'][] = [
-                'link' => route($anakategori->slug . 'urunler'),
-                'name' => $anakategori->name
-            ];
-            $breadcrumb['active'] = $altkategori->name;
-        }
-
+        // Ürünleri listeleme sorgusu
         $products = Product::where('status', '1')
-        ->select(['id', 'name', 'slug', 'size', 'color', 'price', 'category_id', 'image'])
-        ->where(function ($q) use ($sizes, $colors, $startprice, $endprice) {
-            if (!empty($sizes)) {
-                $q->whereIn('size', $sizes);
-            }
+            ->select(['id', 'name', 'slug', 'size', 'color', 'price', 'category_id', 'image'])
+            ->where(function ($q) use ($sizes, $colors, $startprice, $endprice) {
+                if (!empty($sizes)) {
+                    $q->whereIn('size', $sizes);
+                }
 
-            if (!empty($colors)) {
-                $q->whereIn('color', $colors);
-            }
+                if (!empty($colors)) {
+                    $q->whereIn('color', $colors);
+                }
 
-            if (!empty($startprice) && $endprice) {
-                $q->where('price', '>=', $startprice);
-                $q->where('price', '<=', $endprice);
-            }
-            return $q;
-        })
-        ->with('category:id,name,slug')
-        ->whereHas('category', function ($q) use ($category, $slug) {
-            if (!empty($slug)) {
-                $q->where('slug', $slug);
-            }
-            return $q;
-        })
-        ->orderBy($order, $sort)
-        ->paginate(21);
+                if (!empty($startprice) && $endprice) {
+                    $q->where('price', '>=', $startprice);
+                    $q->where('price', '<=', $endprice);
+                }
+                return $q;
+            })
+            ->whereHas('category', function ($q) use ($anakategori, $altkategori) {
+                if ($altkategori) {
+                    $q->where('id', $altkategori->id);
+                } else {
+                    $subcategoryIds = $anakategori->subcategory()->pluck('id')->toArray();
+                    $allCategoryIds = array_merge([$anakategori->id], $subcategoryIds);
+                    $q->whereIn('id', $allCategoryIds);
+                }
+                return $q;
+            })
+            ->orderBy($order, $sort)
+            ->paginate(21);
 
+        // AJAX isteği ise ürün listesini döndür
         if ($request->ajax()) {
             $view = view('frontend.ajax.productList', compact('products'))->render();
-            return response(['data' => $view, 'paginate' => (string) $products->withQueryString()->links('vendor.pagination.custom')]);
+            return response([
+                'data' => $view,
+                'paginate' => (string) $products->withQueryString()->links('vendor.pagination.custom')
+            ]);
         }
 
+        // Filtreleme için gerekli veriler
         $sizelists = Product::where('status', '1')->groupBy('size')->pluck('size')->toArray();
         $colors = Product::where('status', '1')->groupBy('color')->pluck('color')->toArray();
         $maxprice = Product::max('price');
 
+        // View'ı döndür
         return view('frontend.pages.products', compact('breadcrumb', 'products', 'maxprice', 'sizelists', 'colors'));
     }
 
@@ -91,21 +98,19 @@ class PageController extends Controller
     {
         $product = Product::whereSlug($slug)->where('status', '1')->firstOrFail();
         $products = Product::where('id', '!=', $product->id)
-        ->where('category_id', $product->category_id)
-        ->where('status', '1')
-        ->limit(6)
-        ->orderBy('id', 'desc')
-        ->get();
+            ->where('category_id', $product->category_id)
+            ->where('status', '1')
+            ->limit(6)
+            ->orderBy('id', 'desc')
+            ->get();
 
         // Breadcrumb yapısını oluştur
         $breadcrumb = [
-            'sayfalar' => [
-
-            ],
+            'sayfalar' => [],
             'active' => 'Ürün Detay'
         ];
 
-        return view('frontend.pages.product', compact('product', 'products','breadcrumb'));
+        return view('frontend.pages.product', compact('product', 'products', 'breadcrumb'));
     }
 
     public function indirimdekiurunler()
@@ -115,16 +120,13 @@ class PageController extends Controller
 
         // Breadcrumb yapısını oluştur
         $breadcrumb = [
-            'sayfalar' => [
-
-            ],
+            'sayfalar' => [],
             'active' => 'İndirimli Ürünler'
         ];
 
         // View'ı döndür
         return view('frontend.pages.products', compact('products', 'breadcrumb'));
     }
-
 
     public function hakkimizda()
     {
@@ -149,5 +151,4 @@ class PageController extends Controller
 
         return view('frontend.pages.contact', compact('breadcrumb'));
     }
-
 }

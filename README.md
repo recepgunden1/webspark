@@ -5,12 +5,6 @@ Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test am
 
 ## TO DO LIST
 
- - [ ] slider statuslar pasif görünüyor panele her girişte
-
- - [ ] site panel ayar ekleme ckeditor seçeneği kalkacak
-
- - [ ] sepette ürün 0 adet olunca sayfa yenilemeden silinmeli
-
  - [ ] panel tüm placeholder'lar düzenlenecek
 
  - [ ] sipariş edildikten sonra ana sayfaya dönerken başarı mesajı yollanacak
@@ -68,3 +62,5 @@ Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test am
  - [ ] panel anasayfa tablo sağdan boşluk bırakılmalı
 
  - [ ] sepette adet arttırınca sayfa otomatik yenilenecek
+ 
+ - [ ] sepette ürün 0 adet olunca sayfa yenilemeden silinmeli
