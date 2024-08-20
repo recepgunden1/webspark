@@ -32,9 +32,9 @@
                         <label>Resim</label>
                         <input type="file" name="image" class="file-upload-default">
                         <div class="input-group col-xs-12">
-                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Resim Yükle">
                           <span class="input-group-append">
-                            <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                            <button class="file-upload-browse btn btn-primary" type="button">Yükle</button>
                           </span>
                         </div>
                       </div>
@@ -42,15 +42,15 @@
 
                   <div class="form-group">
                     <label for="name">Baslik</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{$about->name ?? ''}}" placeholder="Slider Baslik">
+                    <input type="text" class="form-control" id="name" name="name" value="{{$about->name ?? ''}}" placeholder="Slider Başlık">
                   </div>
                   <div class="form-group">
                     <label for="editor">Hakkımızda</label>
-                    <textarea class="form-control" id="editor" name="content" placeholder="Hakkımızda" cols="30" rows="10">{{$about->content ?? ''}}</textarea>
+                    <textarea class="form-control" id="editor" name="content" placeholder="Hakkımızda Yazısı" cols="30" rows="10">{{$about->content ?? ''}}</textarea>
                   </div>
                   <div class="form-group">
                     <label for="text_1_icon">İcon 1</label>
-                    <input type="text" class="form-control" id="text_1_icon" name="text_1_icon" value="{{$about->text_1_icon ?? ''}}" placeholder="Text 1">
+                    <input type="text" class="form-control" id="text_1_icon" name="text_1_icon" value="{{$about->text_1_icon ?? ''}}" placeholder="İcon 1">
                   </div>
                   <div class="form-group">
                     <label for="text_1_content">Text 1 Content</label>
@@ -63,7 +63,7 @@
 
                   <div class="form-group">
                     <label for="text_2_icon">İcon 2</label>
-                    <input type="text" class="form-control" id="text_2_icon" name="text_2_icon" value="{{$about->text_2_icon ?? ''}}" placeholder="Text 2">
+                    <input type="text" class="form-control" id="text_2_icon" name="text_2_icon" value="{{$about->text_2_icon ?? ''}}" placeholder="İcon 2">
                   </div>
                   <div class="form-group">
                     <label for="text_2_content">Text 2 Content</label>
@@ -76,7 +76,7 @@
 
                   <div class="form-group">
                     <label for="text_3_icon">İcon 3</label>
-                    <input type="text" class="form-control" id="text_3_icon" name="text_3_icon" value="{{$about->text_3_icon ?? ''}}" placeholder="Text 3">
+                    <input type="text" class="form-control" id="text_3_icon" name="text_3_icon" value="{{$about->text_3_icon ?? ''}}" placeholder="İcon 3">
                   </div>
                   <div class="form-group">
                     <label for="text_3_content">Text 3 Content</label>
