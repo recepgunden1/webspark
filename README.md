@@ -3,7 +3,7 @@
 ### NOT!!!
 Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test amaçlıdır hepsi düzeltilecektir...
 
-## TODO
+## TO DO LIST
  - [ ] sepette adet arttırınca sayfa otomatik yenilenecek
 
  - [ ] slider statuslar pasif görünüyor panele her girişte
@@ -29,8 +29,6 @@ Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test am
  - [ ] sepet ikonu ve yanındakiler düzenlenecek (işlevsellik açısından)
 
  - [ ] hakkımızda sayfası webspark logosu eklenecek
-
- - [ ] hakkımızda sayfası webspark logosu üzerindeki beyaz yuvarlak kaldırılacak
 
  - [ ] panel gereksiz gelen kutusu bilgileri vs diğerleri de dahil hepsi silinecek
 
