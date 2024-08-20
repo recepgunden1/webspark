@@ -1,10 +1,7 @@
-<h1>Laravel ile E-Ticaret Sitesi</h1>
+<h1>WEBSPARK - Laravel ile E-Ticaret Sitesi</h1>
 
 ### NOT!!!
 Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test amaçlıdır hepsi düzeltilecektir...
-
-# WEBSPARK
- - This is my blog website
 
 ## TODO
  - [x] Kontrol paneli düzenlenecek.
