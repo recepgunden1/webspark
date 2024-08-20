@@ -6,7 +6,7 @@ Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test am
 ## TODO
  - [ ] sepette adet arttırınca sayfa otomatik yenilenecek
 
- - [ ] sliderlar pasif görünüyor panele her girişte
+ - [ ] slider statuslar pasif görünüyor panele her girişte
 
  - [ ] site panel ayar ekleme ckeditor seçeneği kalkacak
 
@@ -14,6 +14,42 @@ Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test am
 
  - [ ] ödemeyi tamamlama formu placeholder'lar düzenlenecek
 
- - [ ] sipariş edildikten sonra ana sayfaya dönerken başarı mesajı yolla
+ - [ ] sipariş edildikten sonra ana sayfaya dönerken başarı mesajı yollanacak
 
- - [ ] admin paneli sipariş tablosu düzgün çalışmıyor
+ - [ ] admin paneli sipariş tablosu düzgün çalışmıyor (önceden yazmışım ne olduğunu bilmiyorum bakıcam)
+
+ - [ ] github repo security sorunu düzeltilmesi lazım.
+
+ - [ ] indirimdeki ürünler sayfası eksik...
+
+ - [ ] panel gmail düzenleme ayarı çalışmıyor kontrol edilecek.
+
+ - [ ] anasayfa arama özelliği eklenecek
+
+ - [ ] sepet ikonu ve yanındakiler düzenlenecek (işlevsellik açısından)
+
+ - [ ] hakkımızda sayfası webspark logosu eklenecek
+
+ - [ ] hakkımızda sayfası webspark logosu üzerindeki beyaz yuvarlak kaldırılacak
+
+ - [ ] panel gereksiz gelen kutusu bilgileri vs diğerleri de dahil hepsi silinecek
+
+ - [ ] panel footer düzenlenecek
+
+ - [ ] panel header düzenlenecek
+
+ - [ ] panel ve siteye logo + favicon eklenecek
+
+ - [ ] ürün eklerken form alanları içinde yazan yazılar yanlış
+
+ - [ ] ürün eklerken form alanında 1 den fazla beden seçilebilecek
+
+ - [ ] bilgilendirme mesajları düzenlenecek
+
+ - [ ] dark mode eklenecek
+
+ - [ ] kadın ve çocuk kategorisinde erkek ürünü de görünüyor fakat alt kategorilerde sorun olmuyor
+
+ - [ ] siteye örnek ürün eklenecek
+
+ - [ ] panel sidebar kutucuklar birbirinden alakasız şekilde açılıp kapanıyor

@@ -12,8 +12,8 @@ use Str;
 class SliderController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
+    * Display a listing of the resource.
+    */
     public function index()
     {
         $sliders = Slider::all();
@@ -21,16 +21,16 @@ class SliderController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
+    * Show the form for creating a new resource.
+    */
     public function create()
     {
         return view('backend.pages.slider.edit');
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
+    * Store a newly created resource in storage.
+    */
     public function store(SliderRequest $request)
     {
         $dosyadi = null;
@@ -58,16 +58,16 @@ class SliderController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
+    * Display the specified resource.
+    */
     public function show(string $id)
     {
         //
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
+    * Show the form for editing the specified resource.
+    */
     public function edit(string $id)
     {
         $slider = Slider::where('id',$id)->first();
@@ -75,10 +75,13 @@ class SliderController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     */
+    * Update the specified resource in storage.
+    */
     public function update(Request $request, string $id)
     {
+        // Güncellenecek slider'ı veritabanından çekelim
+        $slider = Slider::findOrFail($id);
+
         $dosyadi = null;
         $resimurl = null;
 
@@ -87,11 +90,11 @@ class SliderController extends Controller
             $dosyadi = time() . '-' . Str::slug($request->name) . '.' . $resim->getClientOriginalExtension();
             $resim->move(public_path('img/slider'), $dosyadi);
 
-
             $resimurl = asset('img/slider/' . $dosyadi);
         }
 
-        Slider::where('id', $id)->update([
+        // Güncelleme işlemi
+        $slider->update([
             'name' => $request->name,
             'link' => $request->link,
             'content' => $request->content,
@@ -103,9 +106,10 @@ class SliderController extends Controller
     }
 
 
+
     /**
-     * Remove the specified resource from storage.
-     */
+    * Remove the specified resource from storage.
+    */
     public function destroy(Request $request)
     {
         $slider = Slider::where('id',$request->id)->firstOrFail();

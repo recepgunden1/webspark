@@ -19,7 +19,6 @@
         </div>
         <div class="col-md-6">
           <h2 class="text-black">{{$product->name ?? ''}}</h2>
-          {{$product->name ?? ''}}
           <p><strong class="text-primary h4">{{number_format($product->price,2)}}</strong></p>
           <form action="{{route('sepet.add')}}" method="POST">
             @csrf

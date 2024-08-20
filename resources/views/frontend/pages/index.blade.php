@@ -122,7 +122,7 @@
             <div class="col-md-12 col-lg-5 text-center pl-md-5">
                 <h2><a href="#">{{$settings['kampanya_title'] ?? ''}}</a></h2>
                 <p>{{$settings['kampanya_text'] ?? ''}}</p>
-                <p><a href="{{route('indirimdekiurunler')}}" class="btn btn-primary btn-sm">İndirimdeki ürünler</a></p>
+                <p><a href="{{route('indirimdekiurunler')}}" class="btn btn-primary btn-sm">İNDİRİMDEKİ ÜRÜNLER</a></p>
             </div>
         </div>
     </div>
