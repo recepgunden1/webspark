@@ -12,7 +12,7 @@ Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test am
 
  - [ ] sepette ürün 0 adet olunca sayfa yenilemeden silinmeli
 
- - [ ] ödemeyi tamamlama formu placeholder'lar düzenlenecek
+ - [ ] panel tüm placeholder'lar düzenlenecek
 
  - [ ] sipariş edildikten sonra ana sayfaya dönerken başarı mesajı yollanacak
 
@@ -53,3 +53,15 @@ Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test am
  - [ ] siteye örnek ürün eklenecek
 
  - [ ] panel sidebar kutucuklar birbirinden alakasız şekilde açılıp kapanıyor
+
+ - [ ] anasayfa ürünlerimiz butonu link ayarlanmamış ürünler sayfasına gidecek
+
+ - [ ] ürünler sayfası sıralama doğru çalışıyor mu test edilecek
+
+ - [ ] panel düzenleme ve oluşturma butonları türkçeye çevirilecek (submit)
+
+ - [ ] panel sağ alt köşede bir ikon var kaldırılacak
+
+ - [ ] panel ana menüye dönmek için buton eklenecek
+
+ - [ ] panel örn. siparişler tablosuna girince başlıkta "Basic Table" yazıyor

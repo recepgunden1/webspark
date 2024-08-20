@@ -39,9 +39,9 @@
     <nav class="site-navigation text-right text-md-center" role="navigation">
       <div class="container">
         <ul class="site-menu js-clone-nav d-none d-md-block">
-            <li class="active"><a href="{{ route('anasayfa') }}">Ana Sayfa</a></li>
+            <li class="active"><a href="{{ route('anasayfa') }}">ANASAYFA</a></li>
           <li class="has-children">
-            <a href="#">Kategori</a>
+            <a href="#">KATEGORİLER</a>
             <ul class="dropdown">
 
                 @if (!empty($categories) && $categories->count() > 0)
@@ -60,10 +60,10 @@
             </ul>
           </li>
           <li>
-            <a href="{{route('hakkimizda')}}">Hakkımızda</a>
+            <a href="{{route('hakkimizda')}}">HAKKIMIZDA</a>
           </li>
-          <li><a href="{{route('urunler')}}">Ürünler</a></li>
-          <li><a href="{{ route('iletisim') }}">İletişim</a></li>
+          <li><a href="{{route('urunler')}}">ÜRÜNLER</a></li>
+          <li><a href="{{ route('iletisim') }}">İLETİŞİM</a></li>
         </ul>
       </div>
     </nav>
