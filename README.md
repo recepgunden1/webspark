@@ -4,7 +4,7 @@
 
 Sitenin çalışması için DB dosyasını veritabanında içe aktarmanız gerekmektedir !!!
 
-DB Dosyası projenin <b>ana dizini içerisinde "db_dosyasi"</b> klasörü içerisindedir.
+DB Dosyası projenin <u>ana dizini içerisinde "db_dosyasi"</u> klasörü içerisindedir.
 
 ## TO DO LIST
 
