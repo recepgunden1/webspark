@@ -62,7 +62,7 @@
             <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
                 <a class="block-2-item" href="{{url($category->slug)}}">
                     <figure class="image">
-                        <img src="{{asset($category->image)}}" alt="" class="img-fluid">
+                        <img src="{{asset($category->image)}}" alt="" class="img-fluid" style="width: 100%; height: 600px; object-fit: cover;">
                     </figure>
                     <div class="text">
                         {{--<span class="text-uppercase">Giyim</span>--}}
@@ -91,7 +91,7 @@
                         <div class="item">
                             <div class="block-4 text-center">
                                 <figure class="block-4-image">
-                                    <img src="{{asset($item->image)}}" alt="Image placeholder" class="img-fluid">
+                                    <img src="{{asset($item->image)}}" alt="Image placeholder" class="img-fluid" style="width: 100%; height: 600px; object-fit: cover;">
                                 </figure>
                                 <div class="block-4-text p-4">
                                     <h3><a href="#">{{$item->name}}</a></h3>
