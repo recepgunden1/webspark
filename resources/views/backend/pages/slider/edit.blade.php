@@ -44,25 +44,25 @@
                         <label>Resim</label>
                         <input type="file" name="image" class="file-upload-default">
                         <div class="input-group col-xs-12">
-                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Resim Yükle">
                           <span class="input-group-append">
-                            <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                            <button class="file-upload-browse btn btn-primary" type="button">Yükle</button>
                           </span>
                         </div>
                       </div>
 
 
                   <div class="form-group">
-                    <label for="name">Baslik</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{$slider->name ?? ''}}" placeholder="Slider Baslik">
+                    <label for="name">Başlık</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{$slider->name ?? ''}}" placeholder="Slider Başlık">
                   </div>
                   <div class="form-group">
                     <label for="slogan">Slogan</label>
-                    <textarea class="form-control" id="slogan" name="content" placeholder="Slider Slogan" rows="3">{{$slider->content ?? ''}}</textarea>
+                    <textarea class="form-control" id="slogan" name="content" placeholder="Slider Sloganı" rows="3">{{$slider->content ?? ''}}</textarea>
                   </div>
                   <div class="form-group">
                     <label for="link">Link</label>
-                    <input type="text" class="form-control" id="link" name="link" value="{{$slider->link ?? ''}}" placeholder="Slider Link">
+                    <input type="text" class="form-control" id="link" name="link" value="{{$slider->link ?? ''}}" placeholder="Boş Geçebilirsiniz">
                   </div>
 
                   <div class="form-group">
