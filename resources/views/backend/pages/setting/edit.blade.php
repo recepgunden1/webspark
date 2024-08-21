@@ -35,7 +35,6 @@
 
                     <select name="set_type" class="form-control" id="setTypeSelect">
                         <option value="">Tür Seçiniz</option>
-                        <option value="ckeditor" {{isset($setting->set_type) && $setting->set_type == 'ckeditor' ? 'selected' : ''}}>Ckeditor</option>
                         <option value="textarea" {{isset($setting->set_type) && $setting->set_type == 'textarea' ? 'selected' : ''}}>TextArea</option>
                         <option value="file" {{isset($setting->set_type) && $setting->set_type == 'file' ? 'selected' : ''}}>File</option>
                         <option value="image" {{isset($setting->set_type) && $setting->set_type == 'image' ? 'selected' : ''}}>Resim</option>
@@ -111,7 +110,7 @@
                     name: 'data',
                     value: defaultText,
                     class: 'form-control',
-                    placeholder: 'Value giriniz',
+                    placeholder: 'Text giriniz',
                 });
             }
             else if(type === 'email') {
@@ -133,7 +132,7 @@
                 newInput = $('<textarea>').attr({
                     name: 'data',
                     value: defaultText,
-                    placeholder: 'Textarea',
+                    placeholder: 'CK-Editör',
                     Class: 'form-control',
                 });
             }
@@ -141,7 +140,7 @@
                 newInput = $('<textarea>').attr({
                     name: 'data',
                     value: defaultText,
-                    placeholder: 'Textarea',
+                    placeholder: 'Text Area',
                     Class: 'form-control',
                 });
             }
