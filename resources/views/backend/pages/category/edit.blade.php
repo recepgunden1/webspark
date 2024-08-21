@@ -44,22 +44,22 @@
                         <label>Resim</label>
                         <input type="file" name="image" class="file-upload-default">
                         <div class="input-group col-xs-12">
-                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Resim Yükle">
                           <span class="input-group-append">
-                            <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                            <button class="file-upload-browse btn btn-primary" type="button">Yükle</button>
                           </span>
                         </div>
                       </div>
 
                   <div class="form-group">
-                    <label for="name">Baslik</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{$category->name ?? ''}}" placeholder="Kategori Baslik">
+                    <label for="name">Başlık</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{$category->name ?? ''}}" placeholder="Kategori Başlığı">
                   </div>
 
                   <div class="form-group">
-                    <label for="name">Baslik</label>
+                    <label for="name">Kategorisi</label>
                     <select name="cat_ust" id="" class="form-control">
-                      <option value="">Kategori Sec</option>
+                      <option value="">Kategori Seç</option>
                       @if ($categories)
                         @foreach ($categories as $alt)
                           <option value="{{$alt->id}}" {{ isset($category) && $category->cat_ust == $alt->id ? 'selected' : '' }}>{{$alt->name}}</option>
@@ -69,8 +69,8 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="name">Icerik Yazisi</label>
-                    <textarea class="form-control" id="content" name="content" rows="3" placeholder="Kategori Yazisi">{{$category->content ?? ''}}</textarea>
+                    <label for="name">İçerik Yazısı</label>
+                    <textarea class="form-control" id="content" name="content" rows="3" placeholder="Kategori İçeriği">{{$category->content ?? ''}}</textarea>
                   </div>
 
                   <div class="form-group">
