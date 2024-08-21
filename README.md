@@ -5,10 +5,6 @@ Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test am
 
 ## TO DO LIST
 
- - [ ] İndirimdeki ürünler sayfası eksikmiş...
-
- - [ ] Panel site ayarları kısmında gmail düzenleme ayarı çalışmıyor kontrol edilecek.
-
  - [ ] Anasayfa arama çubuğu kısmı işlevselleştirilecek.
 
  - [ ] Sepet ikonu ve yanındakiler düzenlenecek. (işlevsellik açısından)
