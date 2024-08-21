@@ -7,14 +7,6 @@ Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test am
 
  - [ ] İndirimdeki ürünler sayfası eksikmiş...
 
- - [ ] Paneldeki tüm placeholder'lar düzenlenecek.
-
- - [ ] Sipariş edildikten sonra ana sayfaya dönerken başarı mesajı yollanacak.
-
- - [ ] Admin paneli sipariş tablosu düzgün çalışmıyor. (önceden yazmışım ne olduğunu bilmiyorum bakıcam)
-
- - [ ] Github reposundaki security uyarısı düzeltilmesi lazım.
-
  - [ ] Panel site ayarları kısmında gmail düzenleme ayarı çalışmıyor kontrol edilecek.
 
  - [ ] Anasayfa arama çubuğu kısmı işlevselleştirilecek.
