@@ -40,8 +40,7 @@
                         <option value="1" {{$status == '1' ? 'selected' : ''}}>Sipariş Onaylandı</option>
                     </select>
                   </div>
-                  <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                  <button class="btn btn-light">Cancel</button>
+                  <button type="submit" class="btn btn-primary mr-2">Gönder</button>
                 </form>
               </div>
             </div>

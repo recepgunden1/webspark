@@ -87,8 +87,7 @@
                     <input type="text" class="form-control" id="text_3" name="text_3" value="{{$about->text_3 ?? ''}}" placeholder="Text 3">
                   </div>
 
-                  <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                  <button class="btn btn-light">Cancel</button>
+                  <button type="submit" class="btn btn-primary mr-2">Gönder</button>
                 </form>
               </div>
             </div>

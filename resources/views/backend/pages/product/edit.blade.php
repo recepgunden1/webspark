@@ -5,7 +5,7 @@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Ürün Ekle</h4>
+                <h4 class="card-title">Ürün</h4>
                 @if ($errors)
                 @foreach ($errors->all() as $error)
                 <div class="alert alert-danger">
@@ -111,8 +111,7 @@
                             <option value="1" {{$status == '1' ? 'selected' : ''}}>Aktif</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
+                    <button type="submit" class="btn btn-primary mr-2">Gönder</button>
                 </form>
             </div>
         </div>
