@@ -36,3 +36,5 @@ Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test am
  - [ ] Panel düzenleme ve oluşturma butonları türkçeye çevirilecek. (submit)
 
  - [ ] Panel de örn. siparişler tablosuna girince başlıkta "Basic Table" yazıyor.
+
+ - [ ] Ürünler sayfasına girince anasayfaya atıyor.

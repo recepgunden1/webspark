@@ -24,7 +24,7 @@ Route::group(['middleware'=>'sitesetting'],function(){
 
     Route::post('/iletisim/kaydet',[AjaxController::class,'iletisimkaydet'])->name('iletisim.kaydet');
 
-    Route::get('/urunler',[PageController::class,'urunler'])->name('urunler');
+    Route::get('/urunler',[PageController::class,'urunlerr'])->name('urunler');
 
     Route::get('/erkek/{slug?}',[PageController::class,'urunler'])->name('erkekurunler');
 

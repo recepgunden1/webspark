@@ -10,6 +10,62 @@ use App\Models\Category;
 
 class PageController extends Controller
 {
+
+    public function urunlerr(Request $request)
+    {
+        // Filtreleme parametrelerini ayarla
+        $sizes = !empty($request->size) ? explode(',', $request->size) : null;
+        $colors = !empty($request->color) ? explode(',', $request->color) : null;
+        $startprice = $request->min ?? null;
+        $endprice = $request->max ?? null;
+        $order = $request->order ?? 'id';
+        $sort = $request->sort ?? 'desc';
+
+        // Breadcrumb yapısını oluştur
+        $breadcrumb = [
+            'sayfalar' => [],
+            'active' => 'Tüm Ürünler'
+        ];
+
+        // Ürünleri listeleme sorgusu
+        $products = Product::where('status', '1')
+        ->select(['id', 'name', 'slug', 'size', 'color', 'price', 'category_id', 'image'])
+        ->where(function ($q) use ($sizes, $colors, $startprice, $endprice) {
+            if (!empty($sizes)) {
+                $q->whereIn('size', $sizes);
+            }
+
+            if (!empty($colors)) {
+                $q->whereIn('color', $colors);
+            }
+
+            if (!empty($startprice) && $endprice) {
+                $q->where('price', '>=', $startprice);
+                $q->where('price', '<=', $endprice);
+            }
+            return $q;
+        })
+        ->orderBy($order, $sort)
+        ->paginate(21);
+
+        // AJAX isteği ise ürün listesini döndür
+        if ($request->ajax()) {
+            $view = view('frontend.ajax.productList', compact('products'))->render();
+            return response([
+                'data' => $view,
+                'paginate' => (string) $products->withQueryString()->links('vendor.pagination.custom')
+            ]);
+        }
+
+        // Filtreleme için gerekli veriler
+        $sizelists = Product::where('status', '1')->groupBy('size')->pluck('size')->toArray();
+        $colors = Product::where('status', '1')->groupBy('color')->pluck('color')->toArray();
+        $maxprice = Product::max('price');
+
+        // View'ı döndür
+        return view('frontend.pages.products', compact('breadcrumb', 'products', 'maxprice', 'sizelists', 'colors'));
+    }
+
     public function urunler(Request $request, $slug = null)
     {
         // Ana kategori ve alt kategorileri bulma
@@ -47,34 +103,34 @@ class PageController extends Controller
 
         // Ürünleri listeleme sorgusu
         $products = Product::where('status', '1')
-            ->select(['id', 'name', 'slug', 'size', 'color', 'price', 'category_id', 'image'])
-            ->where(function ($q) use ($sizes, $colors, $startprice, $endprice) {
-                if (!empty($sizes)) {
-                    $q->whereIn('size', $sizes);
-                }
+        ->select(['id', 'name', 'slug', 'size', 'color', 'price', 'category_id', 'image'])
+        ->where(function ($q) use ($sizes, $colors, $startprice, $endprice) {
+            if (!empty($sizes)) {
+                $q->whereIn('size', $sizes);
+            }
 
-                if (!empty($colors)) {
-                    $q->whereIn('color', $colors);
-                }
+            if (!empty($colors)) {
+                $q->whereIn('color', $colors);
+            }
 
-                if (!empty($startprice) && $endprice) {
-                    $q->where('price', '>=', $startprice);
-                    $q->where('price', '<=', $endprice);
-                }
-                return $q;
-            })
-            ->whereHas('category', function ($q) use ($anakategori, $altkategori) {
-                if ($altkategori) {
-                    $q->where('id', $altkategori->id);
-                } else {
-                    $subcategoryIds = $anakategori->subcategory()->pluck('id')->toArray();
-                    $allCategoryIds = array_merge([$anakategori->id], $subcategoryIds);
-                    $q->whereIn('id', $allCategoryIds);
-                }
-                return $q;
-            })
-            ->orderBy($order, $sort)
-            ->paginate(21);
+            if (!empty($startprice) && $endprice) {
+                $q->where('price', '>=', $startprice);
+                $q->where('price', '<=', $endprice);
+            }
+            return $q;
+        })
+        ->whereHas('category', function ($q) use ($anakategori, $altkategori) {
+            if ($altkategori) {
+                $q->where('id', $altkategori->id);
+            } else {
+                $subcategoryIds = $anakategori->subcategory()->pluck('id')->toArray();
+                $allCategoryIds = array_merge([$anakategori->id], $subcategoryIds);
+                $q->whereIn('id', $allCategoryIds);
+            }
+            return $q;
+        })
+        ->orderBy($order, $sort)
+        ->paginate(21);
 
         // AJAX isteği ise ürün listesini döndür
         if ($request->ajax()) {
@@ -98,11 +154,11 @@ class PageController extends Controller
     {
         $product = Product::whereSlug($slug)->where('status', '1')->firstOrFail();
         $products = Product::where('id', '!=', $product->id)
-            ->where('category_id', $product->category_id)
-            ->where('status', '1')
-            ->limit(6)
-            ->orderBy('id', 'desc')
-            ->get();
+        ->where('category_id', $product->category_id)
+        ->where('status', '1')
+        ->limit(6)
+        ->orderBy('id', 'desc')
+        ->get();
 
         // Breadcrumb yapısını oluştur
         $breadcrumb = [
