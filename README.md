@@ -1,9 +1,10 @@
 <h1>WEBSPARK - Laravel ile E-Ticaret Sitesi</h1>
 
-# NOT (ÖNEMLİ) !!!
+# (ÖNEMLİ) KURULUM UYARISI !!!
+
 Sitenin çalışması için DB dosyasını veritabanında içe aktarmanız gerekmektedir !!!
 
-DB Dosyası projenin ana dizini içerisinde "db_dosyasi" klasörü içerisindedir.
+DB Dosyası projenin <b>ana dizini içerisinde "db_dosyasi"</b> klasörü içerisindedir.
 
 ## TO DO LIST
 
