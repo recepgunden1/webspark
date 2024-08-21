@@ -13,16 +13,10 @@ Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test am
 
  - [ ] Sepet ikonu ve yanındakiler düzenlenecek. (işlevsellik açısından)
 
- - [ ] Paneldeki gereksiz gelen kutusu bilgileri vs. diğerleri de dahil hepsi silinecek.
-
  - [ ] ürün eklerken form alanında 1 den fazla beden seçilebilecek.
 
  - [ ] Success mesajları düzenlenecek.
 
+ - [ ] Panel anasayfa tablo çalışmıyor.
+
  - [ ] Panel sidebar da kutucuklar birbirinden alakasız şekilde açılıp kapanıyor.
-
- - [ ] Anasayfa ürünlerimiz butonu link ayarlanmamış ürünler sayfasına gidecek
-
- - [ ] Panel düzenleme ve oluşturma butonları türkçeye çevirilecek. (submit)
-
- - [ ] Panel de örn. siparişler tablosuna girince başlıkta "Basic Table" yazıyor.
