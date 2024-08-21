@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 21, 2024 at 07:42 PM
+-- Generation Time: Aug 21, 2024 at 09:23 PM
 -- Server version: 5.7.24
 -- PHP Version: 8.3.1
 
@@ -329,8 +329,13 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `slug`, `image`, `category_id`, `short_text`, `price`, `size`, `color`, `qty`, `status`, `content`, `created_at`, `updated_at`) VALUES
-(105, 'Yeşil Erkek T-Shirt', 'test-baslik', 'http://localhost:8000/img/urun/1724117026-test-baslik.png', 2, 'Yeşil erkek tişörtü', '800.00', 'M', 'Yeşil', NULL, '1', 'yeşil erkek tişörtü', '2024-08-19 22:23:46', '2024-08-19 22:30:24'),
-(106, 'Gri Dar Kesim Kadın Elbisesi', 'kadin-elbise', 'http://localhost:8000/img/urun/1724184003-kadin-elbise.png', 10, 'Kadın Elbisesi', '1200.00', 'S', 'Gri', NULL, '1', 'Dar Kadın Elbisesi', '2024-08-20 17:00:03', '2024-08-20 17:00:03');
+(105, 'Yeşil Erkek T-Shirt', 'test-baslik', 'http://localhost:8000/img/urun/1724117026-test-baslik.png', 2, 'Yeşil erkek tişörtü', '800.00', 'M', 'Yeşil', NULL, '1', 'yeşil erkek tişörtü', '2024-08-19 22:23:46', '2024-08-21 17:19:40'),
+(106, 'Kadın Elbisesi', 'kadin-elbise', 'http://localhost:8000/img/urun/1724272307-gri-dar-kesim-kadin-elbisesi.png', 10, 'Kadın Elbisesi', '1200.00', 'S', 'Gri', NULL, '1', 'Dar Kadın Elbisesi', '2024-08-20 17:00:03', '2024-08-21 18:20:26'),
+(107, 'Çocuk Pantolonu', 'cocuk-pantolonu', 'http://localhost:8000/img/urun/1724274948-cocuk-pantolonu.png', 9, 'Lacivert Çocuk Pantolonu', '500.00', 'M', 'Lacivert', NULL, '1', 'Lacivert Çocuk Pantolonu', '2024-08-21 17:28:43', '2024-08-21 18:15:48'),
+(108, 'Çocuk Oyuncağı', 'cocuk-oyuncagi', 'http://localhost:8000/img/urun/1724275087-cocuk-oyuncagi.png', 8, 'Çocuk Oyuncağı', '400.00', 'L', 'Mavi', NULL, '1', 'Çocuk Oyncağı', '2024-08-21 18:18:07', '2024-08-21 18:18:07'),
+(109, 'Kadın Pantolonu', 'kadin-pantolonu', 'http://localhost:8000/img/urun/1724275192-kadin-pantolonu.png', 6, 'Kadın Pantolonu Mavi', '950.00', 'XS', 'Mavi', NULL, '1', 'Kadın Pantolonu Mavi', '2024-08-21 18:19:52', '2024-08-21 18:19:52'),
+(110, 'Erkek Pantolon', 'erkek-pantolon', 'http://localhost:8000/img/urun/1724275314-erkek-pantolon.png', 3, 'Erkek Pantolon Siyah', '760.00', 'XL', 'Siyah', NULL, '1', 'Erkek Pantolon Siyah', '2024-08-21 18:21:54', '2024-08-21 18:21:54'),
+(111, 'Kadın Çanta', 'kadin-canta', 'http://localhost:8000/img/urun/1724275390-kadin-canta.png', 5, 'Kadın Çanta Siyah', '2100.00', 'XS', 'Siyah', NULL, '1', 'Kadın Çanta Siyah', '2024-08-21 18:23:10', '2024-08-21 18:23:10');
 
 -- --------------------------------------------------------
 
@@ -352,7 +357,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('Iy2rZE0cAhycHn70n13e6IrIX6mQcOCmW70dY2gX', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRksyeG9LREE2YVo0UGRlV0JmY1M1OTVic0oydFlZTnY3c0R5M0EzUyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9wYW5lbCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1724269200);
+('Iy2rZE0cAhycHn70n13e6IrIX6mQcOCmW70dY2gX', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRksyeG9LREE2YVo0UGRlV0JmY1M1OTVic0oydFlZTnY3c0R5M0EzUyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC91cnVubGVyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1724275398);
 
 -- --------------------------------------------------------
 
@@ -612,7 +617,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `site_settings`
