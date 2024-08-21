@@ -19,8 +19,6 @@
                 <div class="btn-group">
                   <select class="form-control" id="orderList">
                     <option class="dropdown-item" value="">Sırala...</option>
-                    <option class="dropdown-item" value="id-asc">A-Z ye sırala</option>
-                    <option class="dropdown-item" value="id-desc">Z-A ya sırala</option>
                     <option class="dropdown-item" value="price-asc">Düşük fiyattan yükseğe sırala</option>
                     <option class="dropdown-item" value="price-desc">Yüksek fiyattan düşüğe sırala</option>
                   </select>

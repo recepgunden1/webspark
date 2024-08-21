@@ -31,8 +31,6 @@ Sitedeki tüm başlıklar, yazılar hepsi geçici olarak yazılmıştır test am
 
  - [ ] Anasayfa ürünlerimiz butonu link ayarlanmamış ürünler sayfasına gidecek
 
- - [ ] Ürünler sayfası filtreleme doğru çalışıyor mu test edilecek.
-
  - [ ] Panel düzenleme ve oluşturma butonları türkçeye çevirilecek. (submit)
 
  - [ ] Panel de örn. siparişler tablosuna girince başlıkta "Basic Table" yazıyor.
