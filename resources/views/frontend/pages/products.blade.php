@@ -5,7 +5,7 @@
     <style>
         .productContent img {
             width: 100%;
-            height: 400px; /* Belirli bir yükseklik verilir */
+            height: 300px; /* Belirli bir yükseklik verilir */
             object-fit: cover; /* Resmi kapsayıcıya uygun şekilde keser */
         }
     </style>
